@@ -3,6 +3,8 @@ var router   = express.Router();
 var User     = require('../models/User');
 var util     = require('../util');
 var jwt      = require('jsonwebtoken');
+var config = require("../config/config.json");
+var env = process.env.NODE_ENV || "development";
 
 // login
 router.post('/login',
@@ -25,6 +27,7 @@ router.post('/login',
     if(!isValid) return res.json(util.successFalse(validationError));
     else next();
   },
+
   function(req,res,next){
     User.findOne({username:req.body.username})
     .select({password:1,username:1,name:1,email:1})
@@ -37,7 +40,7 @@ router.post('/login',
           _id : user._id,
           username: user.username
         };
-        var secretOrPrivateKey = process.env.JWT_SECRET;
+        var secretOrPrivateKey = config[env].JWT_SECRET;
         var options = {expiresIn: 60*60*24};
         jwt.sign(payload, secretOrPrivateKey, options, function(err, token){
           if(err) return res.json(util.successFalse(err));
@@ -70,7 +73,7 @@ router.get('/refresh', util.isLoggedin,
           _id : user._id,
           username: user.username
         };
-        var secretOrPrivateKey = process.env.JWT_SECRET;
+        var secretOrPrivateKey = config[env].JWT_SECRET;
         var options = {expiresIn: 60*60*24};
         jwt.sign(payload, secretOrPrivateKey, options, function(err, token){
           if(err) return res.json(util.successFalse(err));

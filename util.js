@@ -1,4 +1,6 @@
 var jwt = require('jsonwebtoken');
+var config = require("./config/config.json");
+var env = process.env.NODE_ENV || "development";
 
 var util = {};
 
@@ -42,7 +44,7 @@ util.isLoggedin = function(req,res,next){
   var token = req.headers['x-access-token'];
   if (!token) return res.json(util.successFalse(null,'token is required!'));
   else {
-    jwt.verify(token, process.env.JWT_SECRET, function(err, decoded) {
+    jwt.verify(token, config[env].JWT_SECRET, function(err, decoded) {
       if(err) return res.json(util.successFalse(err));
       else{
         req.decoded = decoded;

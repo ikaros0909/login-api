@@ -1,0 +1,18 @@
+{
+    "development": {
+        "JWT_SECRET": "JEMS_Key",
+        "MONGO_DB_LOGIN_API":{
+            "url": "mongodb://localhost:16010/oauth2?authSource=oauth2",
+            "user": "oauth2",
+            "pass": "oauth2"
+        }
+    },
+    "production": {
+        "JWT_SECRET": "JEMS_Key",
+        "MONGO_DB_LOGIN_API":{
+            "url": "mongodb://localhost:16010/oauth2?authSource=oauth2",
+            "user": "oauth2",
+            "pass": "oauth2"
+        }
+    }
+}

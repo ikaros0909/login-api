@@ -3,10 +3,20 @@ var app        = express();
 var path       = require('path');
 var mongoose   = require('mongoose');
 var bodyParser = require('body-parser');
+var config = require("./config/config.json");
+var env = process.env.NODE_ENV || "development";
 
 // Database
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGO_DB_LOGIN_API, {useMongoClient: true});
+
+var options = {
+    user: config[env].MONGO_DB_LOGIN_API.user,
+    pass: config[env].MONGO_DB_LOGIN_API.pass,
+    useMongoClient: true
+  };
+
+mongoose.connect(config[env].MONGO_DB_LOGIN_API.url, options);
+
 var db = mongoose.connection;
 db.once('open', function () {
    console.log('DB connected!');
