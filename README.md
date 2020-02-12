@@ -1,6 +1,6 @@
 # Node JS API
 이 저장소의 코드는
-[http://a-mean-blog.com/ko/blog/Node-JS-API](http://a-mean-blog.com/ko/blog/Node-JS-API)에서 작성되었습니다.
+[http://a-mean-blog.com/ko/blog/Node-JS-API](https://www.a-mean-blog.com/ko/blog/Node-JS-API/_/%EA%B8%B0%EB%B3%B8-REST-API-%EB%A7%8C%EB%93%A4%EA%B8%B0)에서 작성되었습니다.
 <br>
 
 ## 파라미터 생성 
